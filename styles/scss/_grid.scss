@@ -1,0 +1,185 @@
+// Table of Contents
+// 1. Grid Variables
+// 2. Grid Mixins
+// 3. CSS Ready Mixins and Classes
+
+// ----- Grid Variables
+$gutter: 15px;
+$columns: 12;
+$width: 100%;
+$max-width: 1200px;
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+// ----- Grid Mixins
+@mixin row($use:normal) {
+	
+	@if $use == normal {
+		margin: 0 auto;
+		max-width: $max-width;
+		width: 100%;
+		*zoom: 1;
+		&:before,
+		&:after {
+			content:"";
+			display:table;
+		}
+		&:after {
+			clear:both;
+		}
+	}
+
+	@if $use == nested {
+		margin: 0 #{-$gutter};
+		max-width: none;
+		width: auto;
+		*zoom: 1;
+		&:before,
+		&:after {
+			content:"";
+			display:table;
+		}
+		&:after {
+			clear:both;
+		}
+	}
+}
+
+@mixin columns($number,$columns:$columns) {
+	float: left;
+	padding: 0 $gutter;
+	width: $width / ($columns / $number);
+}
+
+@mixin resized-columns($number,$columns:$columns) {
+	position: static;
+	width: $width / ($columns / $number);
+}
+
+@mixin shift-left($offset:1) {
+	position: relative;
+	right: $width / ($columns / $offset);
+}
+
+@mixin shift-right($offset:1) {
+	position: relative;
+	left: $width / ($columns / $offset);
+}
+
+@mixin block-grid($up:2){
+	$block-plus: 1;
+	$block-selector: #{$up}n+#{$block-plus};
+	display: block;
+	margin: 0 -$gutter;
+	overflow: auto;
+	> li {
+		display: block;
+		float: left;
+		height: auto;
+		padding: 0 $gutter;
+		width: 100% / $up;
+		&:nth-of-type(#{$block-selector}) {
+			clear: both;
+		}
+	}
+}
+
+@mixin block-reset($up:2){
+	$reset-plus: 1;
+	$reset-selector: #{$up}n+#{$reset-plus};
+	li:nth-of-type( #{$reset-selector} ) {
+		clear: none;
+	}
+}
+
+
+
+// ----- CSS Ready Mixins and Classes
+@mixin columns-class($number,$columns:$columns) {
+	width: $width / ($columns / $number);
+}
+
+@mixin block-grid-class($up:2){
+	$block-plus: 1;
+	$block-selector: #{$up}n+#{$block-plus};
+	> li {
+		width: 100% / $up;
+		&:nth-of-type(#{$block-selector}) {
+			clear: both;
+		}
+	}
+}
+
+.row {
+	@include row;
+	.row {
+		@include row(nested);
+	}
+}
+
+[class*="columns-"] {
+	float: left;
+	padding: 0 $gutter;
+}
+.columns-12 { @include columns-class(12); }
+.columns-11 { @include columns-class(11); }
+.columns-10 { @include columns-class(10); }
+.columns-9 { @include columns-class(9); }
+.columns-8 { @include columns-class(8); }
+.columns-7 { @include columns-class(7); }
+.columns-6 { @include columns-class(6); }
+.columns-5 { @include columns-class(5); }
+.columns-4 { @include columns-class(4); }
+.columns-3 { @include columns-class(3); }
+.columns-2 { @include columns-class(2); }
+.columns-1 { @include columns-class(1); }
+
+[class*="right-"], [class*="left-"] {
+	position: relative
+}
+
+.right-1 { @include shift-right(1); }
+.right-2 { @include shift-right(2); }
+.right-3 { @include shift-right(3); }
+.right-4 { @include shift-right(4); }
+.right-5 { @include shift-right(5); }
+.right-6 { @include shift-right(6); }
+.right-7 { @include shift-right(7); }
+.right-8 { @include shift-right(8); }
+.right-9 { @include shift-right(9); }
+.right-10 { @include shift-right(10); }
+.right-11 { @include shift-right(11); }
+
+.left-1 { @include shift-left(1); }
+.left-2 { @include shift-left(2); }
+.left-3 { @include shift-left(3); }
+.left-4 { @include shift-left(4); }
+.left-5 { @include shift-left(5); }
+.left-6 { @include shift-left(6); }
+.left-7 { @include shift-left(7); }
+.left-8 { @include shift-left(8); }
+.left-9 { @include shift-left(9); }
+.left-10 { @include shift-left(10); }
+.left-11 { @include shift-left(11); }
+
+[class*="block-grid-"] {
+	display: block;
+	margin: 0 #{-$gutter};
+	overflow: auto;
+	padding: 0;
+	> li {
+		display: block;
+		float: left;
+		height: auto;
+		padding: 0 $gutter;
+	}
+}
+.block-grid-6 { @include block-grid-class(6); }
+.block-grid-5 { @include block-grid-class(5); }
+.block-grid-4 { @include block-grid-class(4); }
+.block-grid-3 { @include block-grid-class(3); }
+.block-grid-2 { @include block-grid-class(2); }
