@@ -1,9 +1,10 @@
-// Table of Contents
-// 1. Grid Variables
-// 2. Grid Mixins
-// 3. CSS Ready Mixins and Classes
+// ----- Table of Contents
+// ----- 1. Grid Variables
+// ----- 2. Grid Mixins
+// ----- 3. CSS Ready Mixins and Classes
 
-// ----- Grid Variables
+ // ----- Grid Variables
+// ---------------------
 $gutter: 15px;
 $columns: 12;
 $width: 100%;
@@ -15,7 +16,8 @@ $max-width: 1200px;
 	box-sizing: border-box;
 }
 
-// ----- Grid Mixins
+ // ----- Grid Mixins
+// ------------------
 @mixin row($use:normal) {
 	
 	@if $use == normal {
@@ -98,7 +100,8 @@ $max-width: 1200px;
 
 
 
-// ----- CSS Ready Mixins and Classes
+ // ----- CSS Ready Mixins and Classes
+// -----------------------------------
 @mixin columns-class($number,$columns:$columns) {
 	width: $width / ($columns / $number);
 }
