@@ -1,4 +1,3 @@
-@import "_normalize.scss";
 @import "_gymnast.scss";
 
 body {
@@ -7,6 +6,12 @@ body {
 
 h3 {
 	margin-top: 0;
+}
+
+
+.grids, 
+.blocks {
+	padding-bottom: 25px;
 }
 
 .grids {
@@ -44,24 +49,24 @@ h3 {
 }
 
 @media screen and (max-width: 767px) {
-	.columns-12, .columns-11, .columns-10, .columns-9,
-	.columns-8, .columns-7, .columns-6, .columns-5,
-	.columns-4, .columns-3, .columns-2, .columns-1 {
+	[class*="columns-"] {
 		@include resized-columns(12);
 	}
 
 	.shifted {
-		.columns-12, .columns-11, .columns-10, .columns-9,
-		.columns-8, .columns-7, .columns-6, .columns-5,
-		.columns-4, .columns-3, .columns-2, .columns-1 {
+		[class*="columns-"] {
 			@include resized-columns(12);
 		}
 	}
 
-	[class*="block-grid-"] {
+	.block-grid-6 {
 		@include block-reset(6);
-		@include block-reset(5);
-		@include block-reset(4);
+		@include block-grid(3);
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.block-grid-6 {
 		@include block-reset(3);
 		@include block-grid(2);
 	}

@@ -1,47 +1,43 @@
 <!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en-US" > <![endif]-->
+<!--[if IE 9]> 				 <html class="no-js lt-ie10" lang="en-US" > <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
 	
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Gymnast</title>
+	<title>Gymnast: A Flexible Grid</title>
+	<link href="styles/css/normalize.css" rel="stylesheet" type="text/css" media="screen" />
 	<link href="styles/css/style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 
 <body>
 
+	<div class="row">
+
+		<h2>Gymnast Showcase</h2>
+
+		<p>Both mixins and CSS ready classes have been used in these examples)</p>
+
+		<p>All columns and grids are fully responsive</p>
+
+	</div>
+
 	<div class="row grids">
 
-		<h1>The Grid</h1>
+		<h2>Columns</h2>
 
 		<div class="columns-12"><span>12 Columns</span></div>
 
-		<div class="columns-11"><span>11 Columns</span></div><div class="columns-1"><span>1 Col</span></div>
-
-		<div class="columns-10"><span>10 Columns</span></div><div class="columns-2"><span>2 Columns</span></div>
-
-		<div class="columns-9"><span>9 Columns</span></div><div class="columns-3"><span>3 Columns</span></div>
-
-		<div class="columns-8"><span>8 Columns</span></div><div class="columns-4"><span>4 Columns</span></div>
-
-		<div class="columns-7"><span>7 Columns</span></div><div class="columns-5"><span>5 Columns</span></div>
-
 		<div class="columns-6"><span>6 Columns</span></div><div class="columns-6"><span>6 Columns</span></div>
-
-	</div>
-
-	<div class="row grids">
 
 		<div class="columns-4"><span>4 Columns</span></div><div class="columns-4"><span>4 Columns</span></div><div class="columns-4"><span>4 Columns</span></div>
 
-		<div class="columns-3"><span>3 Columns</span></div><div class="columns-6"><span>6 Columns</span></div><div class="columns-3"><span>3 Columns</span></div>
-
-		<div class="columns-2"><span>2 Columns</span></div><div class="columns-8"><span>8 Columns</span></div><div class="columns-2"><span>2 Columns</span></div>
-
 	</div>
 
 	<div class="row grids">
 
-		<h1>Nested Grid</h1>
+		<h2>Nested Columns</h2>
 
 		<div class="columns-8">
 
@@ -77,58 +73,52 @@
 
 	<div class="row grids shifted">
 
-		<h1>Shifted Columns</h1>
+		<h2>Shifted Columns</h2>
 
-		<div class="columns-8"><span>8 Columns</span></div>
+		<div class="columns-8"><span>8 Columns (comes first in the HTML)</span></div>
 
-		<div class="columns-4"><span>4 Columns</span></div>
+		<div class="columns-4"><span>4 Columns (comes second in the HTML)</span></div>
 
 	</div>
 
 	<div class="row blocks">
 
-		<h1>Block Grids</h1>
+		<h2>Block Grids</h2>
+
+		<h3>6-up Grid</h3>
 
 		<div class="columns-12">
 
-			<h3>6-up Grid</h3>
-
 			<ul class="block-grid-6">
-				<li>Block item 1</li><li>Block item 2</li><li>Block item 3</li><li>Block item 4</li>
-				<li>Block item 5</li><li>Block item 6</li><li>Block item 7</li><li>Block item 8</li>
-				<li>Block item 9</li><li>Block item 10</li><li>Block item 11</li><li>Block item 12</li>
+				<li>Block item 1<br />Extra line of content</li>
+				<li>Block item 2</li>
+				<li>Block item 3</li>
+				<li>Block item 4</li>
+				<li>Block item 5</li>
+				<li>Block item 6</li>
+				<li>Block item 7</li>
+				<li>Block item 8</li>
+				<li>Block item 9</li>
+				<li>Block item 10</li>
+				<li>Block item 11</li>
+				<li>Block item 12</li>
 			</ul>
 
-			<h3>5-up Grid</h3>
+		</div>
 
-			<ul class="block-grid-5">
-				<li>Block item 1</li><li>Block item 2</li><li>Block item 3</li><li>Block item 4</li>
-				<li>Block item 5</li><li>Block item 6</li><li>Block item 7</li><li>Block item 8</li>
-				<li>Block item 9</li><li>Block item 10</li><li>Block item 11</li><li>Block item 12</li>
-			</ul>
+		<h3>2-up Grid</h3>
 
-			<h3>4-up Grid</h3>
-
-			<ul class="block-grid-4">
-				<li>Block item 1</li><li>Block item 2</li><li>Block item 3</li><li>Block item 4</li>
-				<li>Block item 5</li><li>Block item 6</li><li>Block item 7</li><li>Block item 8</li>
-				<li>Block item 9</li><li>Block item 10</li><li>Block item 11</li><li>Block item 12</li>
-			</ul>
-
-			<h3>3-up Grid</h3>
-
-			<ul class="block-grid-3">
-				<li>Block item 1</li><li>Block item 2</li><li>Block item 3</li><li>Block item 4</li>
-				<li>Block item 5</li><li>Block item 6</li><li>Block item 7</li><li>Block item 8</li>
-				<li>Block item 9</li><li>Block item 10</li><li>Block item 11</li><li>Block item 12</li>
-			</ul>
-
-			<h3>2-up Grid</h3>
+		<div class="columns-12">
 
 			<ul class="block-grid-2">
-				<li>Block item 1</li><li>Block item 2</li><li>Block item 3</li><li>Block item 4</li>
-				<li>Block item 5</li><li>Block item 6</li><li>Block item 7</li><li>Block item 8</li>
-				<li>Block item 9</li><li>Block item 10</li><li>Block item 11</li><li>Block item 12</li>
+				<li>Block item 1</li>
+				<li>Block item 2</li>
+				<li>Block item 3<br />Extra line of content</li>
+				<li>Block item 4</li>
+				<li>Block item 5</li>
+				<li>Block item 6<br />Extra line of content</li>
+				<li>Block item 7</li>
+				<li>Block item 8</li>
 			</ul>
 
 		</div>
