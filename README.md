@@ -1,6 +1,6 @@
 # Gymnast
 
-Gymnast is a simple SCSS grid designed for semantic and repsonsive css, inspired by Semantic.gs and Zurb's Foundation.
+Gymnast is a simple SCSS grid designed for semantic and responsive css, inspired by Semantic.gs and Zurb's Foundation.
 
 # What's Included
 
