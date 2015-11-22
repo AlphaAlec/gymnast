@@ -11,7 +11,6 @@ $columns: 12;
 $block-grids: 6;
 $width: 100%;
 $max-width: 1200px;
-$internet-explorer: off;
  
 * {
 	-webkit-box-sizing: border-box;
@@ -19,10 +18,19 @@ $internet-explorer: off;
 	box-sizing: border-box;
 }
  
- // ----- Grid Mixins
-// ------------------
+ // ---------------- Overview
+// --------------------------
 
-// ----- Rows
+// Each sections has a mixins section and a classes section
+// Mixins are the base of the Gymnast grid, and may be used for a completely custom grid approach
+// The classes set up the tools needed for an easy to use, out of the box experience, with more shared and less repeated CSS
+
+
+
+ // ------------------------- Rows
+// -------------------------------
+
+// ----- Row mixins
 @mixin row($use:normal) {
 	@if $use == normal {
 		margin: 0 auto;
@@ -57,9 +65,20 @@ $internet-explorer: off;
 		}
 	}
 }
+
+// ----- Row classes
+.row {
+	@include row;
+	.row {
+		@include row(nested);
+	}
+}
  
 
-// ----- Columns
+ // ---------------------- Columns
+// -------------------------------
+
+// ----- Column mixins
 @mixin columns($number,$columns:$columns) {
 	float: left;
 	padding-right: $gutter;
@@ -68,72 +87,12 @@ $internet-explorer: off;
 }
  
 @mixin resized-columns($number,$columns:$columns) {
-	// mixin designed for media queries; it results in less repeated css
+	// this mixin's intended use is for media queries; it results in less repeated css
 	position: static; // used to cancel out a .left- or .right- mixin
 	width: $width / ($columns / $number);
 }
 
-
-// ----- Shift Left/Right
-@mixin shift-left($offset:1) {
-	position: relative;
-	right: $width / ($columns / $offset);
-}
- 
-@mixin shift-right($offset:1) {
-	position: relative;
-	left: $width / ($columns / $offset);
-}
-
-
-// ----- Block Grids
-@mixin block-grid($up:2){
-	// the up value is how many items you want before it wraps to a second row
-	$block-plus: 1;
-	$block-selector: #{$up}n+#{$block-plus};
-	display: block;
-	margin: 0 #{-$gutter} 15px #{-$gutter};
-	overflow: auto;
-	> li {
-		display: block;
-		float: left;
-		height: auto;
-		padding-right: $gutter;
-		padding-left: $gutter;
-		width: 100% / $up;
-		&:nth-of-type(#{$block-selector}) {
-			clear: both;
-		}
-	}
-}
- 
-@mixin block-reset($up:2){
-	// mixin designed for media queries; it resets the clear: both on the nth of type
-	// then use the main block grid mixin again within the media query to change its 'up' value
-	$reset-plus: 1;
-	$reset-selector: #{$up}n+#{$reset-plus};
-	li:nth-of-type( #{$reset-selector} ) {
-		clear: none;
-	}
-} 
- 
- 
- // ----- CSS Ready Mixins and Classes
-// -----------------------------------
-
-// This section includes lighter versions of the mixins found above
-// These are used in conjuction with shared classes to reduce overall css
-
-// ----- Rows
-.row {
-	@include row;
-	.row {
-		@include row(nested);
-	}
-}
-
-
-// ----- Columns
+// ----- Column classes
 @mixin columns-class($number,$columns:$columns) {
 	width: $width / ($columns / $number);
 }
@@ -157,7 +116,21 @@ $internet-explorer: off;
 }
 
 
-// ----- Shift Left/Right
+ // --- Shifted Left/Right Columns
+// -------------------------------
+
+// ----- Shifted Mixins
+@mixin shift-left($offset:1) {
+	position: relative;
+	right: $width / ($columns / $offset);
+}
+ 
+@mixin shift-right($offset:1) {
+	position: relative;
+	left: $width / ($columns / $offset);
+}
+
+// ----- Shifted classes
 @mixin shift-left-class($offset:1) {
 	right: $width / ($columns / $offset);
 }
@@ -188,8 +161,42 @@ $internet-explorer: off;
 }
 
 
-// ----- Block Grids
- @mixin block-grid-class($up:2){
+ // ------------------ Block Grids
+// -------------------------------
+
+// ----- Block grid mixins
+@mixin block-grid($up:2) {
+	// the up value is how many list items you want before it wraps to a second row
+	$block-plus: 1;
+	$block-selector: #{$up}n+#{$block-plus};
+	display: block;
+	margin: 0 #{-$gutter} 15px #{-$gutter};
+	overflow: auto;
+	> li {
+		display: block;
+		float: left;
+		height: auto;
+		padding-right: $gutter;
+		padding-left: $gutter;
+		width: 100% / $up;
+		&:nth-of-type(#{$block-selector}) {
+			clear: both;
+		}
+	}
+}
+ 
+@mixin block-reset($up:2){
+	// this mixin's intended use is for media queries; it resets the clear: both on the nth of type
+	// then use the main block grid mixin again within the media query to change its 'up' value
+	$reset-plus: 1;
+	$reset-selector: #{$up}n+#{$reset-plus};
+	li:nth-of-type( #{$reset-selector} ) {
+		clear: none;
+	}
+}
+
+// ----- Block grid classes
+ @mixin block-grid-class($up:2) {
 	$block-plus: 1;
 	$block-selector: #{$up}n+#{$block-plus};
 	> li {
@@ -220,38 +227,4 @@ $internet-explorer: off;
 	.block-grid-#{$i} {
 		@include block-grid-class($i);
 	}
-}
-
-
- // ----- Internet Explorer
-// ------------------------
-
-@if $internet-explorer == on {
-	// unfortunately, as nth-selectors don't work in ie8, we have to make do with adjacent sibling selectors (or use jQuery)
-	// because of this, for each row your block grid goes down, you need to add a new line of css
-	// below you can find css classes for the block grids that will work for four columns down each
-	// add more as you need!
-
-	// you can include this code by changing the IE grid variable to 'on'
-	// alternatively, if you have a dedicated IE stylesheet, you can include this css there
-
-	.lt-ie9 .block-grid-2 >li:first-child+li+li{clear:both}
-	.lt-ie9 .block-grid-2 >li:first-child+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-2 >li:first-child+li+li+li+li+li+li{clear:both}
-
-	.lt-ie9 .block-grid-3 >li:first-child+li+li+li{clear:both}
-	.lt-ie9 .block-grid-3 >li:first-child+li+li+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-3 >li:first-child+li+li+li+li+li+li+li+li+li{clear:both}
-
-	.lt-ie9 .block-grid-4 >li:first-child+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-4 >li:first-child+li+li+li+li+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-4 >li:first-child+li+li+li+li+li+li+li+li+li+li+li+li{clear:both}
-
-	.lt-ie9 .block-grid-5 >li:first-child+li+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-5 >li:first-child+li+li+li+li+li+li+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-5 >li:first-child+li+li+li+li+li+li+li+li+li+li+li+li+li+li+li{clear:both}
-
-	.lt-ie9 .block-grid-6 >li:first-child+li+li+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-6 >li:first-child+li+li+li+li+li+li+li+li+li+li+li+li{clear:both}
-	.lt-ie9 .block-grid-6 >li:first-child+li+li+li+li+li+li+li+li+li+li+li+li+li+li+li+li+li+li{clear:both}
 }
