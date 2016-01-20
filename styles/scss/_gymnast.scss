@@ -6,11 +6,12 @@
  
  // ----- Grid Variables
 // ---------------------
-$gutter: 15px;
+$max-width: 1200px;
+$width: 100%;
 $columns: 12;
 $block-grids: 6;
-$width: 100%;
-$max-width: 1200px;
+$max-inline-blocks: 4;
+$gutter: 15px;
  
 * {
 	-webkit-box-sizing: border-box;
@@ -227,4 +228,36 @@ $max-width: 1200px;
 	.block-grid-#{$i} {
 		@include block-grid-class($i);
 	}
+}
+
+// ----- Inline Block Grid
+@mixin inline-block-grid($blocks: null) {
+	display: block;
+	margin: 0 #{-$gutter} 15px #{-$gutter};
+	overflow: auto;
+	> li {
+		display: block;
+		float: left;
+		height: auto;
+		padding-right: $gutter;
+		padding-left: $gutter;
+		&:first-child:nth-last-child(1) {
+			width: 100%;
+		}
+
+		@if $blocks != null {
+			$max-inline-blocks: $blocks;
+		}
+
+		@for $i from 2 through $max-inline-blocks {
+			&:first-child:nth-last-child(#{$i}),
+			&:first-child:nth-last-child(#{$i}) ~ li {
+				width: 100% / $i;
+			}
+		}
+	}
+}
+
+.inline-block-grid {
+	@include inline-block-grid();
 }
