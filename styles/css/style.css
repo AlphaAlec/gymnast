@@ -10,13 +10,16 @@
   width: 100%;
   *zoom: 1;
 }
+
 .row:before, .row:after {
   content: "";
   display: table;
 }
+
 .row:after {
   clear: both;
 }
+
 .row .row {
   margin-right: -15px;
   margin-left: -15px;
@@ -24,10 +27,12 @@
   width: auto;
   *zoom: 1;
 }
+
 .row .row:before, .row .row:after {
   content: "";
   display: table;
 }
+
 .row .row:after {
   clear: both;
 }
@@ -37,9 +42,15 @@
   padding-right: 15px;
   padding-left: 15px;
 }
+
 [class*="columns-"].column-center {
   float: none;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+[class*="columns-"].text-center {
+  text-align: center;
 }
 
 .columns-1 {
@@ -221,6 +232,7 @@
   overflow: auto;
   padding: 0;
 }
+
 [class*="block-grid-"] > li {
   display: block;
   float: left;
@@ -232,35 +244,40 @@
 .block-grid-2 > li {
   width: 50%;
 }
-.block-grid-2 > li:nth-of-type(2n+1) {
+
+.block-grid-2 > li:nth-of-type(2n1) {
   clear: both;
 }
 
 .block-grid-3 > li {
   width: 33.33333%;
 }
-.block-grid-3 > li:nth-of-type(3n+1) {
+
+.block-grid-3 > li:nth-of-type(3n1) {
   clear: both;
 }
 
 .block-grid-4 > li {
   width: 25%;
 }
-.block-grid-4 > li:nth-of-type(4n+1) {
+
+.block-grid-4 > li:nth-of-type(4n1) {
   clear: both;
 }
 
 .block-grid-5 > li {
   width: 20%;
 }
-.block-grid-5 > li:nth-of-type(5n+1) {
+
+.block-grid-5 > li:nth-of-type(5n1) {
   clear: both;
 }
 
 .block-grid-6 > li {
   width: 16.66667%;
 }
-.block-grid-6 > li:nth-of-type(6n+1) {
+
+.block-grid-6 > li:nth-of-type(6n1) {
   clear: both;
 }
 
@@ -269,6 +286,7 @@
   margin: 0 -15px 15px -15px;
   overflow: auto;
 }
+
 .inline-block-grid > li {
   display: block;
   float: left;
@@ -276,16 +294,23 @@
   padding-right: 15px;
   padding-left: 15px;
 }
+
 .inline-block-grid > li:first-child:nth-last-child(1) {
   width: 100%;
 }
-.inline-block-grid > li:first-child:nth-last-child(2), .inline-block-grid > li:first-child:nth-last-child(2) ~ li {
+
+.inline-block-grid > li:first-child:nth-last-child(2),
+.inline-block-grid > li:first-child:nth-last-child(2) ~ li {
   width: 50%;
 }
-.inline-block-grid > li:first-child:nth-last-child(3), .inline-block-grid > li:first-child:nth-last-child(3) ~ li {
+
+.inline-block-grid > li:first-child:nth-last-child(3),
+.inline-block-grid > li:first-child:nth-last-child(3) ~ li {
   width: 33.33333%;
 }
-.inline-block-grid > li:first-child:nth-last-child(4), .inline-block-grid > li:first-child:nth-last-child(4) ~ li {
+
+.inline-block-grid > li:first-child:nth-last-child(4),
+.inline-block-grid > li:first-child:nth-last-child(4) ~ li {
   width: 25%;
 }
 
@@ -306,6 +331,7 @@ h3 {
   background: #ccc;
   border: 1px solid #999;
 }
+
 .grids span {
   display: inline-block;
   padding-top: 5px;
@@ -316,6 +342,7 @@ h3 {
   position: relative;
   left: 33.33333%;
 }
+
 .shifted .columns-4 {
   position: relative;
   right: 66.66667%;
@@ -324,6 +351,7 @@ h3 {
 .blocks [class*="block-grid-"] {
   margin-bottom: 30px;
 }
+
 .blocks [class*="block-grid-"] > li {
   background: #ccc;
   border: 1px solid #999;
@@ -336,18 +364,16 @@ h3 {
     position: static;
     width: 100%;
   }
-
   .shifted [class*="columns-"] {
     position: static;
     width: 100%;
   }
-
   .block-grid-6 {
     display: block;
     margin: 0 -15px 15px -15px;
     overflow: auto;
   }
-  .block-grid-6 li:nth-of-type(6n+1) {
+  .block-grid-6 li:nth-of-type(6n1) {
     clear: none;
   }
   .block-grid-6 > li {
@@ -358,17 +384,18 @@ h3 {
     padding-left: 15px;
     width: 33.33333%;
   }
-  .block-grid-6 > li:nth-of-type(3n+1) {
+  .block-grid-6 > li:nth-of-type(3n1) {
     clear: both;
   }
 }
+
 @media screen and (max-width: 600px) {
   .block-grid-6 {
     display: block;
     margin: 0 -15px 15px -15px;
     overflow: auto;
   }
-  .block-grid-6 li:nth-of-type(3n+1) {
+  .block-grid-6 li:nth-of-type(3n1) {
     clear: none;
   }
   .block-grid-6 > li {
@@ -379,17 +406,18 @@ h3 {
     padding-left: 15px;
     width: 50%;
   }
-  .block-grid-6 > li:nth-of-type(2n+1) {
+  .block-grid-6 > li:nth-of-type(2n1) {
     clear: both;
   }
 }
+
 @media screen and (max-width: 480px) {
   [class*="block-grid-"] {
     display: block;
     margin: 0 -15px 15px -15px;
     overflow: auto;
   }
-  [class*="block-grid-"] li:nth-of-type(2n+1) {
+  [class*="block-grid-"] li:nth-of-type(2n1) {
     clear: none;
   }
   [class*="block-grid-"] > li {
@@ -400,7 +428,7 @@ h3 {
     padding-left: 15px;
     width: 100%;
   }
-  [class*="block-grid-"] > li:nth-of-type(1n+1) {
+  [class*="block-grid-"] > li:nth-of-type(1n1) {
     clear: both;
   }
 }

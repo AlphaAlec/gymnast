@@ -104,7 +104,11 @@ $gutter: 15px;
 	padding-left: $gutter;
 	&.column-center {
 		float: none;
-		margin: 0 auto;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	&.text-center {
+		text-align: center;
 	}
 }
 
