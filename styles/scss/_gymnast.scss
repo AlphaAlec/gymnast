@@ -172,11 +172,13 @@ $gutter: 15px;
 // ----- Block grid mixins
 @mixin block-grid($up:2) {
 	// the up value is how many list items you want before it wraps to a second row
-	$block-plus: 1;
-	$block-selector: #{$up}n+#{$block-plus};
 	display: block;
-	margin: 0 #{-$gutter} 15px #{-$gutter};
+	margin-top: 0;
+	margin-right: -$gutter;
+	margin-bottom: $gutter;
+	margin-left: -$gutter;
 	overflow: auto;
+	padding: 0;
 	> li {
 		display: block;
 		float: left;
@@ -184,7 +186,7 @@ $gutter: 15px;
 		padding-right: $gutter;
 		padding-left: $gutter;
 		width: 100% / $up;
-		&:nth-of-type(#{$block-selector}) {
+		&:nth-of-type(#{$up}n+1) {
 			clear: both;
 		}
 	}
@@ -193,20 +195,16 @@ $gutter: 15px;
 @mixin block-reset($up:2){
 	// this mixin's intended use is for media queries; it resets the clear: both on the nth of type
 	// then use the main block grid mixin again within the media query to change its 'up' value
-	$reset-plus: 1;
-	$reset-selector: #{$up}n+#{$reset-plus};
-	li:nth-of-type( #{$reset-selector} ) {
+	&:nth-of-type(#{$up}n+1) {
 		clear: none;
 	}
 }
 
 // ----- Block grid classes
  @mixin block-grid-class($up:2) {
-	$block-plus: 1;
-	$block-selector: #{$up}n+#{$block-plus};
 	> li {
 		width: 100% / $up;
-		&:nth-of-type(#{$block-selector}) {
+		&:nth-of-type(#{$up}n+1) {
 			clear: both;
 		}
 	}
@@ -214,7 +212,10 @@ $gutter: 15px;
 
 [class*="block-grid-"] {
 	display: block;
-	margin: 0 #{-$gutter} 15px #{-$gutter};
+	margin-top: 0;
+	margin-right: -$gutter;
+	margin-bottom: $gutter;
+	margin-left: -$gutter;
 	overflow: auto;
 	padding: 0;
 	> li {
@@ -237,8 +238,12 @@ $gutter: 15px;
 // ----- Inline Block Grid
 @mixin inline-block-grid($blocks: null) {
 	display: block;
-	margin: 0 #{-$gutter} 15px #{-$gutter};
+	margin-top: 0;
+	margin-right: -$gutter;
+	margin-bottom: $gutter;
+	margin-left: -$gutter;
 	overflow: auto;
+	padding: 0;
 	> li {
 		display: block;
 		float: left;
