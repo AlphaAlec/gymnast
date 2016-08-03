@@ -89,7 +89,12 @@ $gutter: 15px;
  
 @mixin resized-columns($number,$columns:$columns) {
 	// this mixin's intended use is for media queries; it results in less repeated css
-	position: static; // used to cancel out a .left- or .right- mixin
+	width: $width / ($columns / $number);
+}
+
+@mixin reset-columns($number,$columns:$columns) {
+	// this mixin's intended use is to cancel out a .left- or .right- mixin/class
+	position: static;
 	width: $width / ($columns / $number);
 }
 
