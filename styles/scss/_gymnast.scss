@@ -200,8 +200,10 @@ $gutter: 15px;
 @mixin block-reset($up:2){
 	// this mixin's intended use is for media queries; it resets the clear: both on the nth of type
 	// then use the main block grid mixin again within the media query to change its 'up' value
-	&:nth-of-type(#{$up}n+1) {
-		clear: none;
+	> li {
+		&:nth-of-type(#{$up}n+1) {
+			clear: none;
+		}
 	}
 }
 

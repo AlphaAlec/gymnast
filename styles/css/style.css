@@ -382,7 +382,7 @@ h3 {
     overflow: auto;
     padding: 0;
   }
-  .block-grid-6:nth-of-type(6n+1) {
+  .block-grid-6 > li:nth-of-type(6n+1) {
     clear: none;
   }
   .block-grid-6 > li {
@@ -408,7 +408,7 @@ h3 {
     overflow: auto;
     padding: 0;
   }
-  .block-grid-6:nth-of-type(3n+1) {
+  .block-grid-6 > li:nth-of-type(3n+1) {
     clear: none;
   }
   .block-grid-6 > li {
@@ -434,7 +434,7 @@ h3 {
     overflow: auto;
     padding: 0;
   }
-  [class*="block-grid-"]:nth-of-type(2n+1) {
+  [class*="block-grid-"] > li:nth-of-type(2n+1) {
     clear: none;
   }
   [class*="block-grid-"] > li {
